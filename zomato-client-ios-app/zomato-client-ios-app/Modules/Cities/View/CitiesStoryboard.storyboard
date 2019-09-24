@@ -21,7 +21,14 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u1r-n9-HiU" customClass="ZomatoNavigationBar" customModule="zomato_client_ios_app" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <items>
-                                    <navigationItem title="Title" id="Zbl-6y-8Sn"/>
+                                    <navigationItem title="Title" id="Zbl-6y-8Sn">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="QgM-AE-xsK">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <connections>
+                                                <action selector="selectCancelButton:" destination="huu-cr-Ky5" id="6GO-OR-xQO"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="ItX-aT-T1S">
@@ -31,6 +38,9 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="55" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="22N-O1-3Yx">
                                 <rect key="frame" x="0.0" y="144" width="414" height="752"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="delegate" destination="huu-cr-Ky5" id="Ni2-MH-blQ"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" name="NavigationBarColor"/>

@@ -29,4 +29,13 @@ class CitiesPresenter {
         }.disposed(by: self.disposeBag)
     }
     
+    func cancel() {
+        router.closeModule()
+    }
+    
+    func selectRow(row: Int) {
+        let city = cities[row]
+        router.selectCity(city: city)
+    }
+    
 }

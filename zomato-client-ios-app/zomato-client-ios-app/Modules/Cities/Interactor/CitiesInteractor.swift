@@ -12,7 +12,6 @@ import RxSwift
 class CitiesInteractor {
     
     func getCities(query: String) -> Observable<[City]> {
-        print("query test \(query)")
         return Observable<[City]>.create { observer in
             let url = ZomatoAPIEndpoints.Cities.get(query: query).url
             let request = ZomatoRequest.sharedInstance.getRequestGet(url: url)
@@ -25,7 +24,6 @@ class CitiesInteractor {
                 }
                 observer.onCompleted()
             }
-            
             task.resume()
             return Disposables.create {
                 task.cancel()

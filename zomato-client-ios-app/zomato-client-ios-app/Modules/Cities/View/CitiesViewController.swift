@@ -22,10 +22,10 @@ class CitiesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadSearchObserver()
+        loadObserver()
     }
     
-    private func loadSearchObserver() {
+    private func loadObserver() {
         
         tableView.register(R.nib.cityTableViewCell)
         
@@ -43,6 +43,17 @@ class CitiesViewController: UIViewController {
         }.disposed(by: disposeBag)
         
     }
-   
+    
+    @IBAction func selectCancelButton(_ sender: UIBarButtonItem) {
+        presenter.cancel()
+    }
 
+}
+
+extension CitiesViewController : UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter.selectRow(row: indexPath.row)
+    }
+    
 }
