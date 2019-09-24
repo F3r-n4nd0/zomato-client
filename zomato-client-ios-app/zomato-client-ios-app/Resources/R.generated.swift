@@ -89,6 +89,32 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
+  /// This `R.nib` struct is generated, and contains static references to 1 nibs.
+  struct nib {
+    /// Nib `CityTableViewCell`.
+    static let cityTableViewCell = _R.nib._CityTableViewCell()
+    
+    /// `UINib(name: "CityTableViewCell", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.cityTableViewCell) instead")
+    static func cityTableViewCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.cityTableViewCell)
+    }
+    
+    static func cityTableViewCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> CityTableViewCell? {
+      return R.nib.cityTableViewCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? CityTableViewCell
+    }
+    
+    fileprivate init() {}
+  }
+  
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 1 reuse identifiers.
+  struct reuseIdentifier {
+    /// Reuse identifier `CityTableViewCell`.
+    static let cityTableViewCell: Rswift.ReuseIdentifier<CityTableViewCell> = Rswift.ReuseIdentifier(identifier: "CityTableViewCell")
+    
+    fileprivate init() {}
+  }
+  
   /// This `R.storyboard` struct is generated, and contains static references to 3 storyboards.
   struct storyboard {
     /// Storyboard `CitiesStoryboard`.
@@ -132,6 +158,24 @@ struct R: Rswift.Validatable {
 struct _R: Rswift.Validatable {
   static func validate() throws {
     try storyboard.validate()
+  }
+  
+  struct nib {
+    struct _CityTableViewCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
+      typealias ReusableType = CityTableViewCell
+      
+      let bundle = R.hostingBundle
+      let identifier = "CityTableViewCell"
+      let name = "CityTableViewCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> CityTableViewCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? CityTableViewCell
+      }
+      
+      fileprivate init() {}
+    }
+    
+    fileprivate init() {}
   }
   
   struct storyboard: Rswift.Validatable {

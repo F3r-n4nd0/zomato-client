@@ -7,10 +7,26 @@
 //
 
 import Foundation
+import RxSwift
 
 class CitiesPresenter {
     
     var router: CitiesRouter!
     var interactor: CitiesInteractor!
+    
+    let publishCities = PublishSubject<[City]>()
+    
+    private var disposeBag = DisposeBag()
+    private var cities: [City] = [] {
+        didSet {
+           self.publishCities.onNext(cities)
+        }
+    }
+    
+    func searchCity(query: String) {
+        interactor.getCities(query: query).bind { [weak self] (cities) in
+            self?.cities = cities
+        }.disposed(by: self.disposeBag)
+    }
     
 }

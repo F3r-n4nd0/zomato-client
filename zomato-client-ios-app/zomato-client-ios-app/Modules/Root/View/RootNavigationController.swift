@@ -16,7 +16,6 @@ class RootNavigationController: UINavigationController {
         self.addChild(citiesView)
     }
     
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

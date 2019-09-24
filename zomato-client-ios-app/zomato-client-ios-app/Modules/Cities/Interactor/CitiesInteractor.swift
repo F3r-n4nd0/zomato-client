@@ -7,7 +7,30 @@
 //
 
 import Foundation
+import RxSwift
 
 class CitiesInteractor {
+    
+    func getCities(query: String) -> Observable<[City]> {
+        print("query test \(query)")
+        return Observable<[City]>.create { observer in
+            let url = ZomatoAPIEndpoints.Cities.get(query: query).url
+            let request = ZomatoRequest.sharedInstance.getRequestGet(url: url)
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                do {
+                    let response = try JSONDecoder().decode(ResponseCities.self, from: data ?? Data())
+                    observer.onNext(response.locationSuggestions)
+                } catch let error {
+                    observer.onError(error)
+                }
+                observer.onCompleted()
+            }
+            
+            task.resume()
+            return Disposables.create {
+                task.cancel()
+            }
+        }
+    }
     
 }

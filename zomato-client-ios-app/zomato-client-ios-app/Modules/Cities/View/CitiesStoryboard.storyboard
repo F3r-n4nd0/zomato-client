@@ -48,6 +48,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xaY-ft-0ES"/>
                     </view>
+                    <connections>
+                        <outlet property="searchBarController" destination="ItX-aT-T1S" id="ERL-4N-Fhf"/>
+                        <outlet property="tableView" destination="22N-O1-3Yx" id="6jF-qo-SVr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h0Z-ki-R8c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

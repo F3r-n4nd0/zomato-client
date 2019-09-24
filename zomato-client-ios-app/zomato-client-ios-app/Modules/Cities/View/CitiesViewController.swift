@@ -7,25 +7,39 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class CitiesViewController: UIViewController {
 
     var presenter: CitiesPresenter!
     
+    @IBOutlet weak var searchBarController: UISearchBar!
+    @IBOutlet weak var tableView: UITableView!
+    
+    private var disposeBag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        loadSearchObserver()
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func loadSearchObserver() {
+        
+        tableView.register(R.nib.cityTableViewCell)
+        
+        searchBarController.rx.text.orEmpty
+            .debounce(.milliseconds(700), scheduler: MainScheduler.instance)
+            .bind { [weak self] query in
+                self?.presenter.searchCity(query: query)
+        }.disposed(by: self.disposeBag)
+        
+        presenter.publishCities.bind(to: tableView.rx.items(cellIdentifier: R.nib.cityTableViewCell.name)) { row, model, cell in
+            let cellCity = cell as! CityTableViewCell
+            cellCity.textLabel?.text = model.name
+        }.disposed(by: disposeBag)
+        
     }
-    */
+   
 
 }
