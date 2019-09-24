@@ -1,0 +1,5 @@
+github "IvanVorobei/SPPermission" "4.0.5"
+github "ReactiveX/RxSwift" "5.0.1"
+github "ninjaprox/NVActivityIndicatorView" "4.7.0"
+github "onevcat/Kingfisher" "5.7.1"
+github "vikmeup/SCLAlertView-Swift" "d98c3e647ad77ed537d021e7d6ad07bb71f83186"
