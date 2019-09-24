@@ -21,4 +21,5 @@ struct ResponseCities: Codable {
         case hasMore = "has_more"
         case hasTotal = "has_total"
     }
+    
 }

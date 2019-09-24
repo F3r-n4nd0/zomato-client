@@ -35,6 +35,7 @@
 		B2BAD3EB233AA45A007D4815 /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BAD3E9233AA45A007D4815 /* CityTableViewCell.swift */; };
 		B2BAD3EC233AA45A007D4815 /* CityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2BAD3EA233AA45A007D4815 /* CityTableViewCell.xib */; };
 		B2BAD3EE233AAA26007D4815 /* ResponseCities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BAD3ED233AAA26007D4815 /* ResponseCities.swift */; };
+		B2BAD3F0233AB2F6007D4815 /* ViewWithBorderRoundCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BAD3EF233AB2F6007D4815 /* ViewWithBorderRoundCorner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +72,7 @@
 		B2BAD3E9233AA45A007D4815 /* CityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
 		B2BAD3EA233AA45A007D4815 /* CityTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityTableViewCell.xib; sourceTree = "<group>"; };
 		B2BAD3ED233AAA26007D4815 /* ResponseCities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseCities.swift; sourceTree = "<group>"; };
+		B2BAD3EF233AB2F6007D4815 /* ViewWithBorderRoundCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewWithBorderRoundCorner.swift; sourceTree = "<group>"; };
 		B7E8724C7F1967256599E089 /* Pods-zomato-client-ios-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zomato-client-ios-app.debug.xcconfig"; path = "Target Support Files/Pods-zomato-client-ios-app/Pods-zomato-client-ios-app.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -254,6 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				B2BAD3D4233A61B3007D4815 /* ZomatoNavigationBar.swift */,
+				B2BAD3EF233AB2F6007D4815 /* ViewWithBorderRoundCorner.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -448,6 +451,7 @@
 			files = (
 				B2BAD3D5233A61B3007D4815 /* ZomatoNavigationBar.swift in Sources */,
 				B2BAD3E8233A8610007D4815 /* ZomatoAPIEndpoints.swift in Sources */,
+				B2BAD3F0233AB2F6007D4815 /* ViewWithBorderRoundCorner.swift in Sources */,
 				B2BAD3E1233A686E007D4815 /* CitiesPresenter.swift in Sources */,
 				B2BAD3DA233A66EA007D4815 /* CitiesRouter.swift in Sources */,
 				B2BAD3EE233AAA26007D4815 /* ResponseCities.swift in Sources */,

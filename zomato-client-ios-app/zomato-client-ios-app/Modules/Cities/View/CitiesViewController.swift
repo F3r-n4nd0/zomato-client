@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Kingfisher
 
 class CitiesViewController: UIViewController {
 
@@ -34,9 +35,11 @@ class CitiesViewController: UIViewController {
                 self?.presenter.searchCity(query: query)
         }.disposed(by: self.disposeBag)
         
-        presenter.publishCities.bind(to: tableView.rx.items(cellIdentifier: R.nib.cityTableViewCell.name)) { row, model, cell in
+        presenter.publishCities.bind(to: tableView.rx.items(cellIdentifier: R.nib.cityTableViewCell.name)) { row, city, cell in
             let cellCity = cell as! CityTableViewCell
-            cellCity.textLabel?.text = model.name
+            cellCity.labelName.text = city.name
+            let urlFlag = URL(string: city.countryFlagURL)
+            cellCity.imageViewFlag?.kf.setImage(with: urlFlag)
         }.disposed(by: disposeBag)
         
     }
