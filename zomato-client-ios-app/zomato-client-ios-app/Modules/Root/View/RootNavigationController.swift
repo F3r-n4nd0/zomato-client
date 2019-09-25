@@ -12,8 +12,8 @@ class RootNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let citiesView = CitiesRouter.assembleModule().view!
-        self.addChild(citiesView)
+        let restaurantsRouter = RestaurantsRouter.assembleModule()
+        self.addChild(restaurantsRouter.view!)
     }
     
     override func didReceiveMemoryWarning() {

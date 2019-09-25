@@ -71,14 +71,23 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 3 images.
+  /// This `R.image` struct is generated, and contains static references to 5 images.
   struct image {
+    /// Image `Button Search`.
+    static let buttonSearch = Rswift.ImageResource(bundle: R.hostingBundle, name: "Button Search")
     /// Image `LaunchImage`.
     static let launchImage = Rswift.ImageResource(bundle: R.hostingBundle, name: "LaunchImage")
     /// Image `Zomato-flat-logo`.
     static let zomatoFlatLogo = Rswift.ImageResource(bundle: R.hostingBundle, name: "Zomato-flat-logo")
+    /// Image `zomato-infinity-dining`.
+    static let zomatoInfinityDining = Rswift.ImageResource(bundle: R.hostingBundle, name: "zomato-infinity-dining")
     /// Image `zomato-logo-navigation-bar`.
     static let zomatoLogoNavigationBar = Rswift.ImageResource(bundle: R.hostingBundle, name: "zomato-logo-navigation-bar")
+    
+    /// `UIImage(named: "Button Search", bundle: ..., traitCollection: ...)`
+    static func buttonSearch(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.buttonSearch, compatibleWith: traitCollection)
+    }
     
     /// `UIImage(named: "LaunchImage", bundle: ..., traitCollection: ...)`
     static func launchImage(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
@@ -88,6 +97,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "Zomato-flat-logo", bundle: ..., traitCollection: ...)`
     static func zomatoFlatLogo(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.zomatoFlatLogo, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "zomato-infinity-dining", bundle: ..., traitCollection: ...)`
+    static func zomatoInfinityDining(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zomatoInfinityDining, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "zomato-logo-navigation-bar", bundle: ..., traitCollection: ...)`
@@ -124,12 +138,14 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.storyboard` struct is generated, and contains static references to 3 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 4 storyboards.
   struct storyboard {
     /// Storyboard `CitiesStoryboard`.
     static let citiesStoryboard = _R.storyboard.citiesStoryboard()
     /// Storyboard `LaunchScreen`.
     static let launchScreen = _R.storyboard.launchScreen()
+    /// Storyboard `RestaurantsStoryboard`.
+    static let restaurantsStoryboard = _R.storyboard.restaurantsStoryboard()
     /// Storyboard `RootStoryboard`.
     static let rootStoryboard = _R.storyboard.rootStoryboard()
     
@@ -141,6 +157,11 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "LaunchScreen", bundle: ...)`
     static func launchScreen(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.launchScreen)
+    }
+    
+    /// `UIStoryboard(name: "RestaurantsStoryboard", bundle: ...)`
+    static func restaurantsStoryboard(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.restaurantsStoryboard)
     }
     
     /// `UIStoryboard(name: "RootStoryboard", bundle: ...)`
@@ -191,6 +212,7 @@ struct _R: Rswift.Validatable {
     static func validate() throws {
       try citiesStoryboard.validate()
       try launchScreen.validate()
+      try restaurantsStoryboard.validate()
       try rootStoryboard.validate()
     }
     
@@ -224,6 +246,27 @@ struct _R: Rswift.Validatable {
         if #available(iOS 11.0, *) {
           if UIKit.UIColor(named: "LogoColor", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'LogoColor' is used in storyboard 'LaunchScreen', but couldn't be loaded.") }
         }
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct restaurantsStoryboard: Rswift.StoryboardResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let name = "RestaurantsStoryboard"
+      let restaurantsViewController = StoryboardViewControllerResource<RestaurantsViewController>(identifier: "RestaurantsViewController")
+      
+      func restaurantsViewController(_: Void = ()) -> RestaurantsViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: restaurantsViewController)
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "Button Search", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Button Search' is used in storyboard 'RestaurantsStoryboard', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "zomato-infinity-dining", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'zomato-infinity-dining' is used in storyboard 'RestaurantsStoryboard', but couldn't be loaded.") }
+        if #available(iOS 11.0, *) {
+          if UIKit.UIColor(named: "NavigationBarColor", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'NavigationBarColor' is used in storyboard 'RestaurantsStoryboard', but couldn't be loaded.") }
+        }
+        if _R.storyboard.restaurantsStoryboard().restaurantsViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'restaurantsViewController' could not be loaded from storyboard 'RestaurantsStoryboard' as 'RestaurantsViewController'.") }
       }
       
       fileprivate init() {}
