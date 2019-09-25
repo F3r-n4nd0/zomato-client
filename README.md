@@ -24,3 +24,32 @@ C4 Diagrams [Link](https://structurizr.com/share/47048)
 
 
 
+# IOS App
+
+    Xcode 10.3
+    IOS 12+
+    
+
+    Zomato API Key
+    ./zomato-client-ios-app/Network/ZomatoRequest.swift
+    
+    var apiKey: String? = "API KEY"
+    
+   
+        
+## Dependency managers
+    
+* [Carthage](https://github.com/Carthage/Carthage)
+* [CocoaPods](https://cocoapods.org)
+
+## Architecture
+
+* [Viper](https://www.objc.io/issues/13-architecture/viper/)
+
+## Libraries
+
+* [RxSwift](https://github.com/ReactiveX/RxSwift)
+* [R.swift](https://github.com/mac-cain13/R.swift)
+* [Kingfisher](https://github.com/onevcat/Kingfisher)
+    
+    
