@@ -1,0 +1,7 @@
+$(SRCROOT)/Carthage/Build/iOS/NVActivityIndicatorView.framework
+$(SRCROOT)/Carthage/Build/iOS/SCLAlertView.framework
+$(SRCROOT)/Carthage/Build/iOS/Kingfisher.framework
+$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework
+$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework
+$(SRCROOT)/Carthage/Build/iOS/SPPermission.framework
+$(SRCROOT)/Carthage/Build/iOS/RxRelay.framework
