@@ -56,12 +56,13 @@ class RestaurantsViewController: UIViewController {
                 self?.presenter.searchRestaurants(query: query)
             }.disposed(by: self.disposeBag)
         
-        presenter.publishRestaurants.bind(to: tableView.rx.items(cellIdentifier: R.nib.restaurantTableViewCell.name)) { row, restaurant, cell in
+        presenter.publishRestaurants.bind(to: tableView.rx.items(cellIdentifier: R.nib.restaurantTableViewCell.name)) { [weak self] row, restaurant, cell in
             let cellRestaurant = cell as! RestaurantTableViewCell
             cellRestaurant.labelRestaurantName.text = restaurant.name
             let urlRestaurant = URL(string: restaurant.thumb)
             cellRestaurant.imageViewRestaurant?.kf.setImage(with: urlRestaurant)
             cellRestaurant.labelLocation.text = restaurant.location.address
+            cellRestaurant.delegate = self
             }.disposed(by: disposeBag)
         
     }
@@ -125,6 +126,24 @@ class RestaurantsViewController: UIViewController {
     
     @IBAction func selectTapGestureCity(_ sender: UITapGestureRecognizer) {
         presenter.selectCity()
+    }
+    
+}
+
+extension RestaurantsViewController : RestaurantTableViewCellDelegate {
+    
+    func showWeb(viewCell: RestaurantTableViewCell) {
+        let indexPath = tableView.indexPath(for: viewCell)
+        if let indexPath = indexPath {
+            presenter.showWeb(row: indexPath.row)
+        }
+    }
+    
+    func showLocation(viewCell: RestaurantTableViewCell) {
+        let indexPath = tableView.indexPath(for: viewCell)
+        if let indexPath = indexPath {
+            presenter.showLocation(row: indexPath.row)
+        }
     }
     
 }

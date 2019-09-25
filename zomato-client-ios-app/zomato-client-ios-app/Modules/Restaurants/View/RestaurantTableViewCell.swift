@@ -8,7 +8,14 @@
 
 import UIKit
 
+protocol RestaurantTableViewCellDelegate: class {
+    func showWeb(viewCell: RestaurantTableViewCell)
+    func showLocation(viewCell: RestaurantTableViewCell)
+}
+
 class RestaurantTableViewCell: UITableViewCell {
+    
+    weak var delegate: RestaurantTableViewCellDelegate?
     
     @IBOutlet weak var labelRestaurantName: UILabel!
     @IBOutlet weak var imageViewRestaurant: UIImageView!
@@ -26,11 +33,11 @@ class RestaurantTableViewCell: UITableViewCell {
     }
     
     @IBAction func touchInsideWeb(_ sender: UIButton) {
-        
+         delegate?.showWeb(viewCell: self)
     }
     
     @IBAction func touchInsideLocation(_ sender: UIButton) {
-        
+         delegate?.showLocation(viewCell: self)
     }
     
 }

@@ -51,6 +51,17 @@ class RestaurantsPresenter {
             }.disposed(by: self.disposeBag)
     }
     
+    func showWeb(row: Int) {
+        let restautant = restaurants[row]
+        let urlWeb = URL(string: restautant.url)
+        router.showWebPage(url: urlWeb!)
+    }
+    
+    func showLocation(row: Int) {
+        let restautant = restaurants[row]
+        router.showLocation(latitude: restautant.location.latitude, longitude: restautant.location.longitude)
+    }
+    
     private func showSelectCity(animate: Bool) {
         router.selectCity(animate: animate) { [weak self] (city) in
             self?.selectNewCity(city: city)

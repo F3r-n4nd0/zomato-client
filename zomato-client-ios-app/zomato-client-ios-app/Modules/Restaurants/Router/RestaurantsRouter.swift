@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import UIKit
 
 class RestaurantsRouter {
     
@@ -34,6 +35,19 @@ class RestaurantsRouter {
         },onCompleted: {
             self.view?.navigationController?.popViewController(animated: true)
         }).disposed(by: disposeBag)
+    }
+    
+    func showWebPage(url: URL) {
+        UIApplication.shared.open(url)
+    }
+    
+    func showLocation(latitude: String, longitude: String) {
+        if UIApplication.shared.canOpenURL(URL(string: "comgooglemaps://")!) {
+            let url = URL(string: "comgooglemaps://?center=\(latitude),\(longitude)&zoom=14&views=traffic&q=\(latitude),\(longitude)")!
+            UIApplication.shared.open(url)
+        } else {
+            NSLog("Can't use comgooglemaps://");
+        }
     }
     
 }
