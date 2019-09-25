@@ -46,9 +46,12 @@ class RestaurantsPresenter {
         guard let city = self.city else {
             return
         }
-        interactor.getRestaurants(cityId: city.id, query: query).bind { [weak self] (restaurants) in
+        interactor.getRestaurants(cityId: city.id, query: query).subscribe(onNext: { [weak self] (restaurants) in
             self?.restaurants = restaurants
-            }.disposed(by: self.disposeBag)
+        }, onError: { [weak self] (error) in
+             self?.restaurants = []
+        }).disposed(by: self.disposeBag)
+
     }
     
     func showWeb(row: Int) {
@@ -60,6 +63,11 @@ class RestaurantsPresenter {
     func showLocation(row: Int) {
         let restautant = restaurants[row]
         router.showLocation(latitude: restautant.location.latitude, longitude: restautant.location.longitude)
+    }
+    
+    func showMenu(row: Int) {
+        let restautant = restaurants[row]
+        router.showMenu(restaurant: restautant)
     }
     
     private func showSelectCity(animate: Bool) {
@@ -74,3 +82,5 @@ class RestaurantsPresenter {
     }
     
 }
+
+

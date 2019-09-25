@@ -130,6 +130,14 @@ class RestaurantsViewController: UIViewController {
     
 }
 
+extension RestaurantsViewController : UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter.showMenu(row: indexPath.row)
+    }
+    
+}
+
 extension RestaurantsViewController : RestaurantTableViewCellDelegate {
     
     func showWeb(viewCell: RestaurantTableViewCell) {

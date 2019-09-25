@@ -27,6 +27,9 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="120" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Dro-tO-WJK">
                                 <rect key="frame" x="0.0" y="364" width="414" height="532"/>
                                 <color key="backgroundColor" name="NavigationBarColor"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Ldp-7J-HWI" id="vJN-TQ-QFQ"/>
+                                </connections>
                             </tableView>
                             <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VjK-cv-fU7" customClass="ViewWithBorderRoundCorner" customModule="zomato_client_ios_app" customModuleProvider="target">
                                 <rect key="frame" x="5" y="229" width="404" height="130"/>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Menu View Controller-->
+        <scene sceneID="0dy-VY-ftF">
+            <objects>
+                <viewController storyboardIdentifier="MenuViewController" id="T6Z-73-pOE" customClass="MenuViewController" customModule="zomato_client_ios_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NGn-oW-Qp3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I6V-oU-BHj" customClass="ZomatoNavigationBar" customModule="zomato_client_ios_app" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="IrW-fU-xhI">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="HVn-IO-lPo">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <connections>
+                                                <action selector="selectBack:" destination="T6Z-73-pOE" id="7OE-Dg-qZD"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QSB-kk-1dU" customClass="ViewWithBorderRoundCorner" customModule="zomato_client_ios_app" customModuleProvider="target">
+                                <rect key="frame" x="10" y="98" width="394" height="788"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PqG-2K-FKV" customClass="ImageViewRound" customModule="zomato_client_ios_app" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="8" width="378" height="473"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1WF-l5-MmZ">
+                                        <rect key="frame" x="20" y="506" width="354" height="26.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2n0-Ac-W9p">
+                                        <rect key="frame" x="20" y="552.5" width="354" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="voa-nM-s9X">
+                                        <rect key="frame" x="20" y="583" width="354" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="PqG-2K-FKV" firstAttribute="leading" secondItem="QSB-kk-1dU" secondAttribute="leading" constant="8" id="38l-Lb-Dw0"/>
+                                    <constraint firstItem="1WF-l5-MmZ" firstAttribute="top" secondItem="PqG-2K-FKV" secondAttribute="bottom" constant="25" id="79e-V3-DAS"/>
+                                    <constraint firstItem="2n0-Ac-W9p" firstAttribute="top" secondItem="1WF-l5-MmZ" secondAttribute="bottom" constant="20" id="B4G-L3-Mzr"/>
+                                    <constraint firstAttribute="trailing" secondItem="PqG-2K-FKV" secondAttribute="trailing" constant="8" id="BUw-ql-dWf"/>
+                                    <constraint firstAttribute="trailing" secondItem="voa-nM-s9X" secondAttribute="trailing" constant="20" id="Ncg-wc-HbB"/>
+                                    <constraint firstItem="PqG-2K-FKV" firstAttribute="top" secondItem="QSB-kk-1dU" secondAttribute="top" constant="8" id="PfU-T4-7eF"/>
+                                    <constraint firstItem="voa-nM-s9X" firstAttribute="top" secondItem="2n0-Ac-W9p" secondAttribute="bottom" constant="10" id="Sqf-kJ-aId"/>
+                                    <constraint firstItem="2n0-Ac-W9p" firstAttribute="leading" secondItem="QSB-kk-1dU" secondAttribute="leading" constant="20" id="bst-VQ-jJe"/>
+                                    <constraint firstAttribute="trailing" secondItem="2n0-Ac-W9p" secondAttribute="trailing" constant="20" id="mqa-ha-OGP"/>
+                                    <constraint firstItem="voa-nM-s9X" firstAttribute="leading" secondItem="QSB-kk-1dU" secondAttribute="leading" constant="20" id="rbZ-dM-OmB"/>
+                                    <constraint firstItem="PqG-2K-FKV" firstAttribute="height" secondItem="QSB-kk-1dU" secondAttribute="height" multiplier="0.6" id="sit-4g-wza"/>
+                                    <constraint firstAttribute="trailing" secondItem="1WF-l5-MmZ" secondAttribute="trailing" constant="20" id="tZi-U9-z0U"/>
+                                    <constraint firstItem="1WF-l5-MmZ" firstAttribute="leading" secondItem="QSB-kk-1dU" secondAttribute="leading" constant="20" id="zfC-7J-yIh"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" name="NavigationBarColor"/>
+                        <constraints>
+                            <constraint firstItem="QSB-kk-1dU" firstAttribute="leading" secondItem="f03-M8-2GO" secondAttribute="leading" constant="10" id="Dd8-mT-dFl"/>
+                            <constraint firstAttribute="bottom" secondItem="QSB-kk-1dU" secondAttribute="bottom" constant="10" id="IbY-4s-VU4"/>
+                            <constraint firstItem="I6V-oU-BHj" firstAttribute="top" secondItem="f03-M8-2GO" secondAttribute="top" id="NPU-G0-dhk"/>
+                            <constraint firstItem="f03-M8-2GO" firstAttribute="trailing" secondItem="QSB-kk-1dU" secondAttribute="trailing" constant="10" id="Unu-ry-lTT"/>
+                            <constraint firstItem="I6V-oU-BHj" firstAttribute="leading" secondItem="f03-M8-2GO" secondAttribute="leading" id="iSv-WM-lXF"/>
+                            <constraint firstItem="I6V-oU-BHj" firstAttribute="trailing" secondItem="f03-M8-2GO" secondAttribute="trailing" id="tgl-9R-zcR"/>
+                            <constraint firstItem="QSB-kk-1dU" firstAttribute="top" secondItem="I6V-oU-BHj" secondAttribute="bottom" constant="10" id="xXR-om-tbN"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="f03-M8-2GO"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageViewRestaurant" destination="PqG-2K-FKV" id="oCq-Gr-YfN"/>
+                        <outlet property="labelAddrs" destination="2n0-Ac-W9p" id="SlR-ce-E9K"/>
+                        <outlet property="labelCity" destination="voa-nM-s9X" id="5nV-nk-F67"/>
+                        <outlet property="labelName" destination="1WF-l5-MmZ" id="NPg-LC-ZFA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Jv-DK-J8l" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="131.8840579710145" y="112.5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="NavigationBarColor">
+            <color red="0.79607843137254897" green="0.12549019607843137" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

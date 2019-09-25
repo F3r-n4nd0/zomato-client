@@ -37,6 +37,14 @@ class RestaurantsRouter {
         }).disposed(by: disposeBag)
     }
     
+    func showMenu(restaurant: Restaurant) {
+        let menuRouter = MenuRouter.assembleModule(restaurant: restaurant)
+        self.view?.navigationController?.pushViewController(menuRouter.view!, animated: true)
+        menuRouter.subjectResult.subscribe(onCompleted: { [weak self] in
+            self?.view?.navigationController?.popViewController(animated: true)
+        }).disposed(by: disposeBag)
+    }
+    
     func showWebPage(url: URL) {
         UIApplication.shared.open(url)
     }

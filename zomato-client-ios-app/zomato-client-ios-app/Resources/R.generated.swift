@@ -166,12 +166,14 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.storyboard` struct is generated, and contains static references to 4 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 5 storyboards.
   struct storyboard {
     /// Storyboard `CitiesStoryboard`.
     static let citiesStoryboard = _R.storyboard.citiesStoryboard()
     /// Storyboard `LaunchScreen`.
     static let launchScreen = _R.storyboard.launchScreen()
+    /// Storyboard `MenuStoryboard`.
+    static let menuStoryboard = _R.storyboard.menuStoryboard()
     /// Storyboard `RestaurantsStoryboard`.
     static let restaurantsStoryboard = _R.storyboard.restaurantsStoryboard()
     /// Storyboard `RootStoryboard`.
@@ -185,6 +187,11 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "LaunchScreen", bundle: ...)`
     static func launchScreen(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.launchScreen)
+    }
+    
+    /// `UIStoryboard(name: "MenuStoryboard", bundle: ...)`
+    static func menuStoryboard(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.menuStoryboard)
     }
     
     /// `UIStoryboard(name: "RestaurantsStoryboard", bundle: ...)`
@@ -267,6 +274,7 @@ struct _R: Rswift.Validatable {
     static func validate() throws {
       try citiesStoryboard.validate()
       try launchScreen.validate()
+      try menuStoryboard.validate()
       try restaurantsStoryboard.validate()
       try rootStoryboard.validate()
     }
@@ -301,6 +309,25 @@ struct _R: Rswift.Validatable {
         if #available(iOS 11.0, *) {
           if UIKit.UIColor(named: "LogoColor", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'LogoColor' is used in storyboard 'LaunchScreen', but couldn't be loaded.") }
         }
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct menuStoryboard: Rswift.StoryboardResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let menuViewController = StoryboardViewControllerResource<MenuViewController>(identifier: "MenuViewController")
+      let name = "MenuStoryboard"
+      
+      func menuViewController(_: Void = ()) -> MenuViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: menuViewController)
+      }
+      
+      static func validate() throws {
+        if #available(iOS 11.0, *) {
+          if UIKit.UIColor(named: "NavigationBarColor", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'NavigationBarColor' is used in storyboard 'MenuStoryboard', but couldn't be loaded.") }
+        }
+        if _R.storyboard.menuStoryboard().menuViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'menuViewController' could not be loaded from storyboard 'MenuStoryboard' as 'MenuViewController'.") }
       }
       
       fileprivate init() {}
