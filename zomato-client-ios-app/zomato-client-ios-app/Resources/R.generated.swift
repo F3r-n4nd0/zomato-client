@@ -71,7 +71,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 5 images.
+  /// This `R.image` struct is generated, and contains static references to 7 images.
   struct image {
     /// Image `Button Search`.
     static let buttonSearch = Rswift.ImageResource(bundle: R.hostingBundle, name: "Button Search")
@@ -79,6 +79,10 @@ struct R: Rswift.Validatable {
     static let launchImage = Rswift.ImageResource(bundle: R.hostingBundle, name: "LaunchImage")
     /// Image `Zomato-flat-logo`.
     static let zomatoFlatLogo = Rswift.ImageResource(bundle: R.hostingBundle, name: "Zomato-flat-logo")
+    /// Image `domain`.
+    static let domain = Rswift.ImageResource(bundle: R.hostingBundle, name: "domain")
+    /// Image `map`.
+    static let map = Rswift.ImageResource(bundle: R.hostingBundle, name: "map")
     /// Image `zomato-infinity-dining`.
     static let zomatoInfinityDining = Rswift.ImageResource(bundle: R.hostingBundle, name: "zomato-infinity-dining")
     /// Image `zomato-logo-navigation-bar`.
@@ -99,6 +103,16 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.zomatoFlatLogo, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "domain", bundle: ..., traitCollection: ...)`
+    static func domain(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.domain, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "map", bundle: ..., traitCollection: ...)`
+    static func map(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.map, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "zomato-infinity-dining", bundle: ..., traitCollection: ...)`
     static func zomatoInfinityDining(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.zomatoInfinityDining, compatibleWith: traitCollection)
@@ -112,10 +126,12 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 1 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 2 nibs.
   struct nib {
     /// Nib `CityTableViewCell`.
     static let cityTableViewCell = _R.nib._CityTableViewCell()
+    /// Nib `RestaurantTableViewCell`.
+    static let restaurantTableViewCell = _R.nib._RestaurantTableViewCell()
     
     /// `UINib(name: "CityTableViewCell", in: bundle)`
     @available(*, deprecated, message: "Use UINib(resource: R.nib.cityTableViewCell) instead")
@@ -123,17 +139,29 @@ struct R: Rswift.Validatable {
       return UIKit.UINib(resource: R.nib.cityTableViewCell)
     }
     
+    /// `UINib(name: "RestaurantTableViewCell", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.restaurantTableViewCell) instead")
+    static func restaurantTableViewCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.restaurantTableViewCell)
+    }
+    
     static func cityTableViewCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> CityTableViewCell? {
       return R.nib.cityTableViewCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? CityTableViewCell
+    }
+    
+    static func restaurantTableViewCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> RestaurantTableViewCell? {
+      return R.nib.restaurantTableViewCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? RestaurantTableViewCell
     }
     
     fileprivate init() {}
   }
   
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 1 reuse identifiers.
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 2 reuse identifiers.
   struct reuseIdentifier {
     /// Reuse identifier `CityTableViewCell`.
     static let cityTableViewCell: Rswift.ReuseIdentifier<CityTableViewCell> = Rswift.ReuseIdentifier(identifier: "CityTableViewCell")
+    /// Reuse identifier `RestaurantTableViewCell`.
+    static let restaurantTableViewCell: Rswift.ReuseIdentifier<RestaurantTableViewCell> = Rswift.ReuseIdentifier(identifier: "RestaurantTableViewCell")
     
     fileprivate init() {}
   }
@@ -188,9 +216,14 @@ struct R: Rswift.Validatable {
 struct _R: Rswift.Validatable {
   static func validate() throws {
     try storyboard.validate()
+    try nib.validate()
   }
   
-  struct nib {
+  struct nib: Rswift.Validatable {
+    static func validate() throws {
+      try _RestaurantTableViewCell.validate()
+    }
+    
     struct _CityTableViewCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
       typealias ReusableType = CityTableViewCell
       
@@ -200,6 +233,28 @@ struct _R: Rswift.Validatable {
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> CityTableViewCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? CityTableViewCell
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct _RestaurantTableViewCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
+      typealias ReusableType = RestaurantTableViewCell
+      
+      let bundle = R.hostingBundle
+      let identifier = "RestaurantTableViewCell"
+      let name = "RestaurantTableViewCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> RestaurantTableViewCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? RestaurantTableViewCell
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "domain", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'domain' is used in nib 'RestaurantTableViewCell', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "map", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'map' is used in nib 'RestaurantTableViewCell', but couldn't be loaded.") }
+        if #available(iOS 11.0, *) {
+          if UIKit.UIColor(named: "NavigationBarColor", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'NavigationBarColor' is used in storyboard 'RestaurantTableViewCell', but couldn't be loaded.") }
+        }
       }
       
       fileprivate init() {}

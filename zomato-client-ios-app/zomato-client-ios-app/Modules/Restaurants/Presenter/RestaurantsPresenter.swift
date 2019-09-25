@@ -14,12 +14,18 @@ class RestaurantsPresenter {
     var router: RestaurantsRouter!
     var interactor: RestaurantsInteractor!
     
+    let publishRestaurants = PublishSubject<[Restaurant]>()
     let publishCity = PublishSubject<City?>()
     
     private var disposeBag = DisposeBag()
     private var city: City? = nil {
         didSet {
             self.publishCity.onNext(city)
+        }
+    }
+    private var restaurants: [Restaurant] = [] {
+        didSet {
+            self.publishRestaurants.onNext(restaurants)
         }
     }
     
@@ -34,6 +40,15 @@ class RestaurantsPresenter {
     
     func selectCity() {
         showSelectCity(animate: true)
+    }
+    
+    func searchRestaurants(query: String) {
+        guard let city = self.city else {
+            return
+        }
+        interactor.getRestaurants(cityId: city.id, query: query).bind { [weak self] (restaurants) in
+            self?.restaurants = restaurants
+            }.disposed(by: self.disposeBag)
     }
     
     private func showSelectCity(animate: Bool) {

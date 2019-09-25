@@ -24,12 +24,12 @@
                                     <constraint firstAttribute="height" constant="200" id="tgc-u6-QiX"/>
                                 </constraints>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Dro-tO-WJK">
-                                <rect key="frame" x="0.0" y="340" width="414" height="556"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="120" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Dro-tO-WJK">
+                                <rect key="frame" x="0.0" y="364" width="414" height="532"/>
+                                <color key="backgroundColor" name="NavigationBarColor"/>
                             </tableView>
                             <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VjK-cv-fU7" customClass="ViewWithBorderRoundCorner" customModule="zomato_client_ios_app" customModuleProvider="target">
-                                <rect key="frame" x="5" y="205" width="404" height="130"/>
+                                <rect key="frame" x="5" y="229" width="404" height="130"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search restaurants" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DCG-fy-2dd" customClass="TextFieldWithBotonBorder" customModule="zomato_client_ios_app" customModuleProvider="target">
                                         <rect key="frame" x="50" y="80" width="304" height="40"/>
@@ -103,7 +103,6 @@
                         </subviews>
                         <color key="backgroundColor" name="NavigationBarColor"/>
                         <constraints>
-                            <constraint firstItem="VjK-cv-fU7" firstAttribute="top" secondItem="Ut3-b9-9jp" secondAttribute="bottom" constant="5" id="1nx-qA-8vJ"/>
                             <constraint firstItem="Dro-tO-WJK" firstAttribute="top" secondItem="VjK-cv-fU7" secondAttribute="bottom" constant="5" id="3Ws-WJ-TfV"/>
                             <constraint firstItem="Dro-tO-WJK" firstAttribute="trailing" secondItem="ZLU-ht-Reb" secondAttribute="trailing" id="3aW-xh-Tma"/>
                             <constraint firstItem="Ut3-b9-9jp" firstAttribute="trailing" secondItem="ZLU-ht-Reb" secondAttribute="trailing" id="6OR-ra-Cp5"/>
@@ -112,6 +111,7 @@
                             <constraint firstItem="Dro-tO-WJK" firstAttribute="leading" secondItem="ZLU-ht-Reb" secondAttribute="leading" id="X6I-xy-kOr"/>
                             <constraint firstItem="ZLU-ht-Reb" firstAttribute="trailing" secondItem="VjK-cv-fU7" secondAttribute="trailing" constant="5" id="XGP-z0-eHm"/>
                             <constraint firstItem="Ut3-b9-9jp" firstAttribute="top" secondItem="JnY-m6-Oyi" secondAttribute="top" id="bbN-0G-Jv5"/>
+                            <constraint firstItem="VjK-cv-fU7" firstAttribute="top" secondItem="ZLU-ht-Reb" secondAttribute="top" constant="185" id="fUU-1q-kLe"/>
                             <constraint firstAttribute="bottom" secondItem="Dro-tO-WJK" secondAttribute="bottom" id="kG0-V4-azM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZLU-ht-Reb"/>
@@ -119,6 +119,9 @@
                     <connections>
                         <outlet property="imageViewFlag" destination="MaY-PS-a7F" id="CUr-SK-tGT"/>
                         <outlet property="labelCityName" destination="OeR-Mf-58u" id="AgI-Ur-apr"/>
+                        <outlet property="layoutContraintHeightBotton" destination="kG0-V4-azM" id="fri-Xo-agA"/>
+                        <outlet property="layoutContraintHeightTop" destination="fUU-1q-kLe" id="unm-2l-sh9"/>
+                        <outlet property="tableView" destination="Dro-tO-WJK" id="hk9-MK-vXx"/>
                         <outlet property="textFieldSearch" destination="DCG-fy-2dd" id="Dcv-Pv-dQp"/>
                     </connections>
                 </viewController>

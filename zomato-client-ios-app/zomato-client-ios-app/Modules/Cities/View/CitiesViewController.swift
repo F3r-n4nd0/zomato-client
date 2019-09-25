@@ -42,6 +42,7 @@ class CitiesViewController: UIViewController {
             cellCity.imageViewFlag?.kf.setImage(with: urlFlag)
         }.disposed(by: disposeBag)
         
+        
     }
     
     @IBAction func selectCancelButton(_ sender: UIBarButtonItem) {

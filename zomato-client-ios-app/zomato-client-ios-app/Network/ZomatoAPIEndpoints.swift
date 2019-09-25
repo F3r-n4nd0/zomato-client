@@ -46,4 +46,26 @@ enum ZomatoAPIEndpoints {
         }
     }
     
+    
+    enum Restaurants: Endpoint {
+        case get(cityId: Int, query: String)
+        public var path: String {
+            switch self {
+            case .get: return "/v2.1/search"
+            }
+        }
+        public var url: URL {
+            switch self {
+            case .get(let cityId, let query):
+                var url = URLComponents(string:"\(API.baseUrl)\(path)")!
+                url.queryItems = [
+                    URLQueryItem(name: "q", value: query),
+                    URLQueryItem(name: "entity_id", value: "\(cityId)"),
+                    URLQueryItem(name: "entity_type", value: "city")
+                ]
+                return url.url!
+            }
+        }
+    }
+    
 }

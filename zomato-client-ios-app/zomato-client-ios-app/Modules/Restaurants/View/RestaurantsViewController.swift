@@ -18,8 +18,13 @@ class RestaurantsViewController: UIViewController {
     @IBOutlet weak var textFieldSearch: UITextField!
     @IBOutlet weak var labelCityName: UILabel!
     @IBOutlet weak var imageViewFlag: UIImageView!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var layoutContraintHeightTop: NSLayoutConstraint!
+    @IBOutlet weak var layoutContraintHeightBotton: NSLayoutConstraint!
     
     private var disposeBag = DisposeBag()
+    private var disposableKeyboard: Disposable?
+    private let heightTopContraint: CGFloat = 185
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,10 +32,38 @@ class RestaurantsViewController: UIViewController {
         presenter.loadData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        subcribeKeyboardMove()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        unsubscribeKeyboardMove()
+    }
+    
     private func loadObservers() {
+        
+        tableView.register(R.nib.restaurantTableViewCell)
+        
         presenter.publishCity.bind { [weak self] (city) in
             self?.loadCity(city: city)
         }.disposed(by: disposeBag)
+        
+        textFieldSearch.rx.text.orEmpty
+            .debounce(.milliseconds(700), scheduler: MainScheduler.instance)
+            .bind { [weak self] query in
+                self?.presenter.searchRestaurants(query: query)
+            }.disposed(by: self.disposeBag)
+        
+        presenter.publishRestaurants.bind(to: tableView.rx.items(cellIdentifier: R.nib.restaurantTableViewCell.name)) { row, restaurant, cell in
+            let cellRestaurant = cell as! RestaurantTableViewCell
+            cellRestaurant.labelRestaurantName.text = restaurant.name
+            let urlRestaurant = URL(string: restaurant.thumb)
+            cellRestaurant.imageViewRestaurant?.kf.setImage(with: urlRestaurant)
+            cellRestaurant.labelLocation.text = restaurant.location.address
+            }.disposed(by: disposeBag)
+        
     }
     
     private func loadCity(city: City?) {
@@ -47,6 +80,47 @@ class RestaurantsViewController: UIViewController {
             imageViewFlag?.kf.setImage(with: urlFlag)
         }
         
+    }
+    
+    private func subcribeKeyboardMove() {
+        disposableKeyboard = keyboardHeight(view: view)
+            .observeOn(MainScheduler.instance)
+            .bind(onNext: { [weak self] keyboardHeight in
+                if keyboardHeight == 0 {
+                    self?.layoutContraintHeightTop.constant = self?.heightTopContraint ?? 0
+                } else {
+                    self?.layoutContraintHeightTop.constant = 0
+                }
+                self?.layoutContraintHeightBotton.constant = keyboardHeight
+            })
+        disposableKeyboard?.disposed(by: disposeBag)
+    }
+    
+    private func unsubscribeKeyboardMove() {
+        disposableKeyboard?.dispose()
+    }
+    
+    private func keyboardHeight(view: UIView) -> Observable<CGFloat> {
+        return PublishSubject
+            .from([
+                NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification)
+                    .map { notification -> CGFloat in
+                        let viewBoardScreenEndFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+                        let viewBoardViewEndFrame = view.convert(viewBoardScreenEndFrame, to: view.window)
+                        return viewBoardViewEndFrame.height
+                },
+                NotificationCenter.default.rx.notification(UIResponder.keyboardWillChangeFrameNotification)
+                    .map { notification -> CGFloat in
+                        let viewBoardScreenEndFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+                        let viewBoardViewEndFrame = view.convert(viewBoardScreenEndFrame, to: view.window)
+                        return viewBoardViewEndFrame.height
+                },
+                NotificationCenter.default.rx.notification(UIResponder.keyboardWillHideNotification)
+                    .map { _ -> CGFloat in
+                        0
+                }
+                ])
+            .merge()
     }
     
     @IBAction func selectTapGestureCity(_ sender: UITapGestureRecognizer) {

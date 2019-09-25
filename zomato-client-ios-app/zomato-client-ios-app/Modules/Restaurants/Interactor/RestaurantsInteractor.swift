@@ -32,4 +32,27 @@ class RestaurantsInteractor {
         }
     }
     
+    func getRestaurants(cityId: Int, query: String) -> Observable<[Restaurant]> {
+        return Observable<[Restaurant]>.create { observer in
+            let url = ZomatoAPIEndpoints.Restaurants.get(cityId: cityId, query: query).url
+            let request = ZomatoRequest.sharedInstance.getRequestGet(url: url)
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                do {
+                    let response = try JSONDecoder().decode(ResponseRestaurants.self, from: data ?? Data())
+                    let restaurants = response.restaurants.map({ (restaurantElement) -> Restaurant in
+                        return restaurantElement.restaurant
+                    })
+                    observer.onNext(restaurants)
+                } catch let error {
+                    observer.onError(error)
+                }
+                observer.onCompleted()
+            }
+            task.resume()
+            return Disposables.create {
+                task.cancel()
+            }
+        }
+    }
+    
 }
